@@ -1,3 +1,5 @@
+import pathlib
+
 
 class GlobalMODIS :
     ns = 1320
@@ -9,6 +11,7 @@ class GlobalMODIS :
     pathname = ''
     year = 2000
     month = 1
+    nyears = 20
 
     def __init__(self):
         print ('starting line is ', self.startl)
@@ -31,10 +34,12 @@ class GlobalMODIS :
         yloc = int((90 - latval) / self.deg_per_pixel)
 
     def parse_filename (self) :
+        self.pathname = pathlib.Path(self.filename).parent
         pos = self.filename.index ('.A20')
         yearstring = self.filename[pos+2:pos+6]
         self.year = int(yearstring)
         daystring = self.filename[pos+6:pos+9]
-        self.month = int((daystring)+5)/30)
+        self.month = int((int(daystring)+5)/30)
+        print ('Path of file is : ',self.pathname)
         print ("Year : ", self.year)
         print ("Month : ", self.month)
