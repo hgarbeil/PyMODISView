@@ -15,7 +15,11 @@ class MOD11(GlobalMODIS):
 
     def __init__(self, fname):
         super(MOD11,self).__init__()
-        file = SD(fname, SDC.READ)
+        self.filename = fname
+        self.read_data()
+
+    def read_data(self):
+        file = SD(self.filename, SDC.READ)
         print(file.info())
         sds_obj = file.select('LST_Day_CMG')
         data = sds_obj.get()

@@ -26,6 +26,7 @@ class UI (QMainWindow):
         fname = QFileDialog.getOpenFileName(self,"",'/Users/hg1/data/')
         print(fname)
         self.m11 = MOD11(fname[0])
+        self.ui.image_widget.create_qimage (self.m11.data_night)
 
     def closeup (self):
         sys.exit(0)

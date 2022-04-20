@@ -5,6 +5,8 @@ class GlobalMODIS :
     starts = 1080
     startl = 700
     deg_per_pixel = 0.05 ;
+    filename = ''
+    pathname = ''
 
     def __init__(self):
         print ('starting line is ', self.startl)
