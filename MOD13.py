@@ -14,7 +14,7 @@ class MOD13(GlobalMODIS):
     # startl = 700
 
     def __init__(self, fname):
-        super(MOD11,self).__init__()
+        super(MOD13,self).__init__()
         file = SD(fname, SDC.READ)
         print(file.info())
         sds_obj = file.select('CMG 0.05 Deg Monthly NDVI')

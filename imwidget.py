@@ -26,9 +26,9 @@ class imwidget (QWidget):
         return outdat
 
 
-
-    def create_qimage (self, indata) :
-        outdat = self.scale_to_byte (indata, 2000, 17000)
+    def create_qimage_gray (self, indata) :
+        ## Given a grayscale uint16 array, create the grayscale qimage
+        outdat = self.scale_to_byte (indata, 2600, 17000)
         self.qimage = QtGui.QImage (outdat,  outdat.shape[1], outdat.shape[0], QtGui.QImage.Format_Grayscale8)
         self.load_image = True
         self.repaint()
@@ -45,4 +45,4 @@ class imwidget (QWidget):
         if self.load_image == False :
             return
 
-        painter.drawImage(0,0,self.qimage, 0, 0, 1320, 700)
+        painter.drawImage(0,0,self.qimage, 0, 0, w, h)

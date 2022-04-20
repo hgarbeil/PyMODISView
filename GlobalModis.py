@@ -7,6 +7,8 @@ class GlobalMODIS :
     deg_per_pixel = 0.05 ;
     filename = ''
     pathname = ''
+    year = 2000
+    month = 1
 
     def __init__(self):
         print ('starting line is ', self.startl)
@@ -27,3 +29,12 @@ class GlobalMODIS :
     def latlon_to_xy (self, lon, lat) :
         xloc = int((lon + 180.) / self.deg_per_pixel )
         yloc = int((90 - latval) / self.deg_per_pixel)
+
+    def parse_filename (self) :
+        pos = self.filename.index ('.A20')
+        yearstring = self.filename[pos+2:pos+6]
+        self.year = int(yearstring)
+        daystring = self.filename[pos+6:pos+9]
+        self.month = int((daystring)+5)/30)
+        print ("Year : ", self.year)
+        print ("Month : ", self.month)

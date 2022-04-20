@@ -30,6 +30,7 @@ class MOD11(GlobalMODIS):
 
         SD.end(file)
         print ("Number of samples is ", self.ns)
+        super().parse_filename ()
 
 
 
