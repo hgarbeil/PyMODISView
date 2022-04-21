@@ -16,12 +16,13 @@ class GlobalMODIS :
 
     def __init__(self):
         print ('starting line is ', self.startl)
-        ns2 = self.ns / 2
-        nl2 = self.nl / 2
-        cent_x, cent_y = self.xy_to_latlon(ns2,nl2)
-        print ("center lat lon ", cent_x, "  ", cent_y)
+        ns2 = int(self.ns / 2)
+        nl2 = int(self.nl / 2)
+        cent_x, cent_y = self.xy_to_lonlat(ns2,nl2)
 
-    def xy_to_latlon(self, x, y):
+        print ("center  lon lat", cent_x, "  ", cent_y)
+
+    def xy_to_lonlat(self, x, y):
         ## given the x and y coordinate locations return the lat and lon
         xloc = self.starts + x
         yloc = self.startl + y
@@ -30,9 +31,10 @@ class GlobalMODIS :
         lonval = -180. + (xloc * self.deg_per_pixel)
         return lonval,latval
 
-    def latlon_to_xy (self, lon, lat) :
+    def lonlat_to_xy (self, lon, lat) :
         xloc = int((lon + 180.) / self.deg_per_pixel )
         yloc = int((90 - latval) / self.deg_per_pixel)
+        return xloc,yloc
 
     def parse_filename (self) :
         self.pathname = pathlib.Path(self.filename).parent

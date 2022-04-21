@@ -28,6 +28,7 @@ class UI (QMainWindow):
         # starting selected cursor location
         self.xloc = 660
         self.yloc = 350
+        self.ui.image_widget.mouse_clicked.connect (self.newxy)
 
 
 
@@ -62,6 +63,19 @@ class UI (QMainWindow):
         self.ui.fnameLabel.setText(fname)
         self.ui.yearLE.setText(str(year))
 
+
+    def newxy (self, x, y):
+        self.xloc = x
+        self.yloc = y
+        print ("Main : ",x, y)
+        if (self.dataproduct==0) :
+            lon,lat = self.m11.xy_to_lonlat(x,y)
+        else :
+            lon,lat = self.m13.xy_to_lonlat(x,y)
+        str_lon = "{:.2f}".format(lon)
+        str_lat = "{:.2f}".format(lat)
+        self.ui.lonLE.setText(str_lon)
+        self.ui.latLE.setText(str_lat)
 
     def closeup (self):
         sys.exit(0)

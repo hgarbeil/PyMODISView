@@ -7,10 +7,12 @@ Created on Tue Apr 19 10:47:59 2022
 """
 
 from PyQt5.QtWidgets import QWidget
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtCore
 import numpy as np
 
 class imwidget (QWidget):
+    mouse_clicked = QtCore.pyqtSignal (int, int)
+
     def __init__(self, parent) :
         QWidget.__init__(self,parent)
         self.load_image = False
@@ -46,3 +48,10 @@ class imwidget (QWidget):
             return
 
         painter.drawImage(0,0,self.qimage, 0, 0, w, h)
+
+    def mousePressEvent (self, event) :
+        xloc = event.pos().x()
+        yloc = event.pos().y()
+        print ("X  Y : ", xloc, yloc)
+        self.mouse_clicked.emit (xloc, yloc)
+
