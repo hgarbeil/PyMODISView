@@ -31,6 +31,7 @@ class UI (QMainWindow):
 
 
 
+
     def dataprod_changed (self, buttonstate) :
         if (buttonstate) :
             self.dataproduct = 0
@@ -42,6 +43,7 @@ class UI (QMainWindow):
         ## depending upon data product, open either the MOD11 or MOD13 file,
         # read in the image data and display
         # LST
+        self.ui.plot_widget.testplot()
         if (self.dataproduct == 0) :
             fname = QFileDialog.getOpenFileName(self,"",'/Users/hg1/data/MOD11')
             print(fname)

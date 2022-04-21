@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -43,9 +43,9 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Plot</string>
+      <string>TimeSeries</string>
      </attribute>
-     <widget class="QWidget" name="plot_widget" native="true">
+     <widget class="myplotwidget" name="plot_widget" native="true">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -394,6 +394,12 @@
    <class>imwidget</class>
    <extends>QWidget</extends>
    <header>imwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>myplotwidget</class>
+   <extends>QWidget</extends>
+   <header>myplotwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
