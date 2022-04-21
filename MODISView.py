@@ -50,11 +50,17 @@ class UI (QMainWindow):
             self.m11 = MOD11(fname[0])
             self.ui.image_widget.create_qimage_gray(self.m11.data_night)
         # NDVI
+            (fname,year, month) = self.m11.getfileinfo()
         if (self.dataproduct == 1) :
             fname = QFileDialog.getOpenFileName(self,"",'/Users/hg1/data/MOD13')
             print(fname)
             self.m13 = MOD13(fname[0])
             self.ui.image_widget.create_qimage_gray(self.m13.data_ndvi)
+            (fname,year,month) = self.m13.getfileinfo()
+
+        self.ui.month_CB.setCurrentIndex(month)
+        self.ui.fnameLabel.setText(fname)
+        self.ui.yearLE.setText(str(year))
 
 
     def closeup (self):

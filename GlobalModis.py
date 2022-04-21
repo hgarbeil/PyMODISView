@@ -1,17 +1,18 @@
 import pathlib
-
+from PyQt5 import QtCore
 
 class GlobalMODIS :
     ns = 1320
     nl = 700
     starts = 1080
     startl = 700
-    deg_per_pixel = 0.05 ;
+    deg_per_pixel = 0.05
     filename = ''
     pathname = ''
     year = 2000
     month = 1
     nyears = 20
+    file_loaded = QtCore.pyqtSignal()
 
     def __init__(self):
         print ('starting line is ', self.startl)
@@ -43,3 +44,8 @@ class GlobalMODIS :
         print ('Path of file is : ',self.pathname)
         print ("Year : ", self.year)
         print ("Month : ", self.month)
+
+
+
+    def getfileinfo (self):
+        return self.filename, self.year, self.month

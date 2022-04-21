@@ -14,8 +14,9 @@ class MOD11(GlobalMODIS):
     # starts = 1080
     # startl = 700
 
-    def __init__(self, fname):
+    def __init__(self, fname=None):
         super(MOD11,self).__init__()
+
         self.filename = fname
         self.read_data()
         self.stacked_day = ""
