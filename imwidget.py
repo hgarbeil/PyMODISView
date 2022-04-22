@@ -17,6 +17,11 @@ class imwidget (QWidget):
         QWidget.__init__(self,parent)
         self.load_image = False
         self.qimage = 0
+        w = self.width()
+        h = self.height()
+        self.xloc = 660
+        self.yloc = 325
+
 
     def scale_to_byte (self, indat, minval, maxval) :
         w = np.where (indat < minval)
@@ -48,10 +53,15 @@ class imwidget (QWidget):
             return
 
         painter.drawImage(0,0,self.qimage, 0, 0, w, h)
+        painter.setPen (QtCore.Qt.yellow)
+        painter.drawRect (QtCore.QRect(self.xloc-2, self.yloc-2, 5, 5))
+
 
     def mousePressEvent (self, event) :
-        xloc = event.pos().x()
-        yloc = event.pos().y()
-        print ("X  Y : ", xloc, yloc)
-        self.mouse_clicked.emit (xloc, yloc)
+        self.xloc = event.pos().x()
+        self.yloc = event.pos().y()
+        print ("X  Y : ", self.xloc, self.yloc)
+
+        self.mouse_clicked.emit (self.xloc, self.yloc)
+
 

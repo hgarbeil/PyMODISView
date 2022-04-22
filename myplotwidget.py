@@ -10,6 +10,8 @@ class myplotwidget (pg.PlotWidget) :
         self.setLabel('bottom',"YEAR")
         self.setLabel('left', "VALUE")
         self.setLabel('top',"ScatterPlot")
+        self.pen0 = pg.mkPen('r', width=1.5)
+        self.pen1 = pg.mkPen('g', width=1.5)
 
 
 
@@ -20,12 +22,12 @@ class myplotwidget (pg.PlotWidget) :
 
     def set_y (self, yvals):
         self.clear()
-        pen0 = pg.mkPen ('r',width=1.5)
-        pen1 = pg.mkPen ('g', width=1.5)
+
+
         npts = yvals[0].size
         x = np.arange(npts) + 2000
-        self.plot(x,yvals[0],pen=pen0)
-        self.plot(x,yvals[1],pen=pen1)
+        self.plot(x,yvals[0],pen=self.pen0)
+        self.plot(x,yvals[1],pen=self.pen1)
         #self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
         #self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
 
