@@ -1,4 +1,4 @@
-# MODISView 
+# PyMODISView 
 
 MODIS MOD11 and MOD13 Global MODIS Monthly Global Analysis Software
 
