@@ -16,8 +16,9 @@ class MOD11(GlobalMODIS):
 
         self.filename = fname
         self.read_data()
-        self.stacked_day = ""
-        self.stacked_night = ""
+        #self.stacked_day = np.zeros((1,1))
+        #self.stacked_night = np.zeros((1,1))
+
 
     def read_data(self):
         file = SD(self.filename, SDC.READ)
@@ -42,12 +43,18 @@ class MOD11(GlobalMODIS):
         self.read_stacked()
 
 
-
-
     def read_stacked (self) :
         ## read in the nighttime stacked file
         sfile = os.path.join(self.pathname,'outarr')
         nbytes = os.path.getsize(sfile)
         self.nyears = int(nbytes / (self.ns * self.nl * 2))
         print("number of years in outarr is ", self.nyears)
-        outarr_night = np.fromfile (sfile, dtype=np.uint16).reshape(self.nyears, self.nl, self.ns)
+        self.stacked_night = np.fromfile (sfile, dtype=np.uint16).reshape(self.nyears, self.nl, self.ns)
+        sfile = os.path.join(self.pathname, 'outarr_day')
+        self.stacked_day = np.fromfile(sfile, dtype=np.uint16).reshape(self.nyears, self.nl, self.ns)
+
+    def get_time_series (self, x, y) :
+        myprof0 = self.stacked_night[:,y,x]*self.scale_factor
+        myprof1 = self.stacked_day[:,y,x]*self.scale_factor
+        newarr=[myprof0 , myprof1]
+        return newarr

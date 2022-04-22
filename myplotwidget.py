@@ -11,11 +11,23 @@ class myplotwidget (pg.PlotWidget) :
         self.setLabel('left', "VALUE")
         self.setLabel('top',"ScatterPlot")
 
-    def testplot (self) :
+
+
         x = np.arange (0,10)+2000
         y = np.arange (0,10)*4.
+        #self.plot(x, y, pen='y', title='Test Plot')
 
-        self.plot(x,y, pen='y', title='Test Plot')
+
+    def set_y (self, yvals):
+        npts = yvals[0].size
+        x = np.arange(npts) + 2000
+        self.plot(x,yvals[0],pen=(0,3))
+        self.plot(x,yvals[1],pen=(1,3))
+        #self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
+        #self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
+
+
+
 
     def plot_data (self, x, y):
         self.plot(x,y)

@@ -44,7 +44,7 @@ class UI (QMainWindow):
         ## depending upon data product, open either the MOD11 or MOD13 file,
         # read in the image data and display
         # LST
-        self.ui.plot_widget.testplot()
+        #self.ui.plot_widget.testplot()
         if (self.dataproduct == 0) :
             fname = QFileDialog.getOpenFileName(self,"",'/Users/hg1/data/MOD11')
             print(fname)
@@ -62,6 +62,11 @@ class UI (QMainWindow):
         self.ui.month_CB.setCurrentIndex(month)
         self.ui.fnameLabel.setText(fname)
         self.ui.yearLE.setText(str(year))
+
+        # get the center profile
+        outprofile = self.m11.get_time_series(660,350)
+        self.ui.plot_widget.set_y(outprofile)
+
 
 
     def newxy (self, x, y):
