@@ -27,6 +27,13 @@ class MOD11(GlobalMODIS):
         print(file.info())
         sds_obj = file.select('LST_Day_CMG')
         data = sds_obj.get()
+        attrs = sds_obj.attributes()
+        # for idx,sds in enumerate(attrs.keys()) :
+        #     print(idx,sds)
+        for key, val in attrs.items():
+            if (key == 'scale_factor'):
+                print('SCALE_FACTOR   : ', key, ':', val)
+                self.scale_factor = val
         self.data_day = data[self.startl:self.startl+self.nl, self.starts:self.starts+self.ns]
         sds_obj = file.select('LST_Night_CMG')
         data = sds_obj.get()

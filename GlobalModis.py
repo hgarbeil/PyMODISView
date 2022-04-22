@@ -1,5 +1,8 @@
 import pathlib
 from PyQt5 import QtCore
+import numpy as np
+from pyhdf.SD import SD, SDC
+
 
 class GlobalMODIS :
     ns = 1320
@@ -12,6 +15,7 @@ class GlobalMODIS :
     year = 2000
     month = 1
     nyears = 20
+    scale_factor = 1.
     file_loaded = QtCore.pyqtSignal()
 
     def __init__(self):
@@ -51,3 +55,29 @@ class GlobalMODIS :
 
     def getfileinfo (self):
         return self.filename, self.year, self.month
+
+
+    def get_datasets (self, modfile) :
+        ## this method is used for convenience to list the datasets and optionally the attributes for
+        # the dataset
+        file = SD(modfile, SDC.READ)
+        print (file.info())
+        datasets_dic = file.datasets()
+
+        for idx, sds in enumerate(datasets_dic.keys()):
+            print(idx, sds)
+
+        #sds_obj = file.select('CMG 0.05 Deg Monthly NDVI')  # select sds
+        sds_obj = file.select (0)
+        data = sds_obj.get()  # get sds data
+        attrs = sds_obj.attributes()
+
+        # for idx,sds in enumerate(attrs.keys()) :
+        #     print(idx,sds)
+        for key,val in attrs.items() :
+            if (key=='scale_factor') :
+                print (key, ':', val)
+
+
+gc = GlobalMODIS()
+gc.get_datasets('/Users/hg1/data/MOD13/001/MOD13C2.A2001001.061.2020061230446.hdf')
