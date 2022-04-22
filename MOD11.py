@@ -1,8 +1,5 @@
 
 
-
-import numpy as np
-from pyhdf.SD import SD, SDC
 from GlobalModis import *
 import os
 

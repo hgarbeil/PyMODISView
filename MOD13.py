@@ -1,8 +1,6 @@
 
 
 
-import numpy as np
-from pyhdf.SD import SD, SDC
 from GlobalModis import *
 
 indir = '/Users/hg1/data/MOD13'
