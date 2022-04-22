@@ -19,10 +19,13 @@ class myplotwidget (pg.PlotWidget) :
 
 
     def set_y (self, yvals):
+        self.clear()
+        pen0 = pg.mkPen ('r',width=1.5)
+        pen1 = pg.mkPen ('g', width=1.5)
         npts = yvals[0].size
         x = np.arange(npts) + 2000
-        self.plot(x,yvals[0],pen=(0,3))
-        self.plot(x,yvals[1],pen=(1,3))
+        self.plot(x,yvals[0],pen=pen0)
+        self.plot(x,yvals[1],pen=pen1)
         #self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
         #self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
 

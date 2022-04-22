@@ -81,6 +81,9 @@ class UI (QMainWindow):
         str_lat = "{:.2f}".format(lat)
         self.ui.lonLE.setText(str_lon)
         self.ui.latLE.setText(str_lat)
+        # get the center profile
+        outprofile = self.m11.get_time_series(x,y)
+        self.ui.plot_widget.set_y(outprofile)
 
     def closeup (self):
         sys.exit(0)
