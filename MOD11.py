@@ -1,7 +1,6 @@
 
 
 from GlobalModis import *
-import os
 
 indir = '/Users/hg1/data/MOD11'
 

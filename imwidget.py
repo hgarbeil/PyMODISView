@@ -63,5 +63,6 @@ class imwidget (QWidget):
         print ("X  Y : ", self.xloc, self.yloc)
 
         self.mouse_clicked.emit (self.xloc, self.yloc)
+        self.update()
 
 

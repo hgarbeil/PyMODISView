@@ -64,7 +64,11 @@ class UI (QMainWindow):
         self.ui.yearLE.setText(str(year))
 
         # get the center profile
-        outprofile = self.m11.get_time_series(660,350)
+        if self.dataproduct == 0 :
+            outprofile = self.m11.get_time_series(660,350)
+        else :
+            outprofile = self.m13.get_time_series(660, 350)
+
         self.ui.plot_widget.set_y(outprofile)
 
 
@@ -73,6 +77,8 @@ class UI (QMainWindow):
         self.xloc = x
         self.yloc = y
         print ("Main : ",x, y)
+
+        # get lon lat
         if (self.dataproduct==0) :
             lon,lat = self.m11.xy_to_lonlat(x,y)
         else :
@@ -81,8 +87,14 @@ class UI (QMainWindow):
         str_lat = "{:.2f}".format(lat)
         self.ui.lonLE.setText(str_lon)
         self.ui.latLE.setText(str_lat)
+
         # get the center profile
-        outprofile = self.m11.get_time_series(x,y)
+        if (self.dataproduct==0) :
+            outprofile = self.m11.get_time_series(x,y)
+        else :
+            outprofile = self.m13.get_time_series(x,y)
+
+        # update plot
         self.ui.plot_widget.set_y(outprofile)
 
     def closeup (self):

@@ -1,7 +1,9 @@
 import pathlib
 from PyQt5 import QtCore
 import numpy as np
+import os
 from pyhdf.SD import SD, SDC
+
 
 
 class GlobalMODIS :

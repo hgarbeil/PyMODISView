@@ -30,8 +30,21 @@ class MOD13(GlobalMODIS):
         SD.end(file)
         print ("Number of samples is ", self.ns)
         self.parse_filename()
+        self.read_stacked()
 
+    def read_stacked (self) :
+        ## read in the nighttime stacked file
+        sfile = os.path.join(self.pathname,'outarr_ndvi')
+        nbytes = os.path.getsize(sfile)
+        self.nyears = int(nbytes / (self.ns * self.nl * 2))
+        print("number of years in outarr is ", self.nyears)
+        self.stacked_ndvi = np.fromfile (sfile, dtype=np.int16).reshape(self.nyears, self.nl, self.ns)
+        sfile = os.path.join(self.pathname, 'outarr_evi')
+        self.stacked_evi = np.fromfile(sfile, dtype=np.int16).reshape(self.nyears, self.nl, self.ns)
 
-
-
+    def get_time_series(self, x, y):
+        myprof0 = self.stacked_ndvi[:, y, x] / self.scale_factor
+        myprof1 = self.stacked_evi[:, y, x] / self.scale_factor
+        newarr = [myprof0, myprof1]
+        return newarr
 
