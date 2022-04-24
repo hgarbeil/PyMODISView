@@ -28,7 +28,7 @@ class UI (QMainWindow):
         # starting selected cursor location
         self.xloc = 660
         self.yloc = 350
-        self.ui.image_widget.mouse_clicked.connect (self.newxy)
+        self.ui.image_widget.mouse_clicked.connect(self.newxy)
 
 
 
@@ -91,11 +91,15 @@ class UI (QMainWindow):
         # get the center profile
         if (self.dataproduct==0) :
             outprofile = self.m11.get_time_series(x,y)
+            valday = self.m11.data_day[y,x]*self.m11.scale_factor
+            valnight = self.m11.data_night[y,x]*self.m11.scale_factor
+            self.ui.plot_widget.set_y(outprofile)
+            self.ui.plot_widget.add_points(self.m11.year, valnight, valday)
         else :
             outprofile = self.m13.get_time_series(x,y)
 
         # update plot
-        self.ui.plot_widget.set_y(outprofile)
+        #self.ui.plot_widget.set_y(outprofile)
 
     def closeup (self):
         sys.exit(0)

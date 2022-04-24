@@ -40,3 +40,15 @@ class myplotwidget (pg.PlotWidget) :
     def set_plot_data (self, xarr, yarr):
         self.xarr = xarr
         self.yarr = yarr
+
+    def add_points(self, year, val0, val1):
+        #self.clear()
+        xvals = [2000,year]
+        yvals = [val0, val1]
+
+        #self.addPoints(xvals,yvals,symbol='t1')
+        #self.plot(xvals,yvals,pen=self.pen0)
+        self.plot([year,], [val0,], pen=self.pen0, symbol='t1', symbolSize=10)
+        self.plot([year, ], [val1, ], pen=self.pen1, symbol=t1, symbolSize=10)
+        #self.plot([year], [val1], symbol='o')
+
