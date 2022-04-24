@@ -49,6 +49,6 @@ class myplotwidget (pg.PlotWidget) :
         #self.addPoints(xvals,yvals,symbol='t1')
         #self.plot(xvals,yvals,pen=self.pen0)
         self.plot([year,], [val0,], pen=self.pen0, symbol='t1', symbolSize=10)
-        self.plot([year, ], [val1, ], pen=self.pen1, symbol=t1, symbolSize=10)
+        self.plot([year, ], [val1, ], pen=self.pen1, symbol='t1', symbolSize=10)
         #self.plot([year], [val1], symbol='o')
 

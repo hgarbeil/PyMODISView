@@ -13,7 +13,8 @@ from MOD11 import *
 from MOD13 import *
 import sys
 
-
+# TODO : used getyears to generate the years.txt file, use this as part of the stack data to correctly plot years
+#
 class UI (QMainWindow):
     def __init__(self) :
         super (UI, self).__init__() 
