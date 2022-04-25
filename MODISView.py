@@ -94,10 +94,14 @@ class UI (QMainWindow):
             outprofile = self.m11.get_time_series(x,y)
             valday = self.m11.data_day[y,x]*self.m11.scale_factor
             valnight = self.m11.data_night[y,x]*self.m11.scale_factor
-            self.ui.plot_widget.set_y(outprofile)
+            self.ui.plot_widget.set_xy(self.m11.stackyears, outprofile)
             self.ui.plot_widget.add_points(self.m11.year, valnight, valday)
         else :
-            outprofile = self.m13.get_time_series(x,y)
+            outprofile = self.m13.get_time_series(x, y)
+            valday = self.m13.data_ndvi[y, x] / self.m13.scale_factor
+            valnight = self.m13.data_evi[y, x] / self.m13.scale_factor
+            self.ui.plot_widget.set_xy(self.m13.stackyears, outprofile)
+            self.ui.plot_widget.add_points(self.m13.year, valnight, valday)
 
         # update plot
         #self.ui.plot_widget.set_y(outprofile)

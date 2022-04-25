@@ -31,6 +31,14 @@ class myplotwidget (pg.PlotWidget) :
         #self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
         #self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
 
+    def set_xy (self, xvals, yvals) :
+        self.clear()
+        self.plot(xvals, yvals[0], pen=self.pen0)
+        self.plot(xvals, yvals[1], pen=self.pen1)
+
+    # self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
+    # self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
+
 
 
 

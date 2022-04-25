@@ -8,7 +8,7 @@ from os import listdir, walk
 from os.path import isfile, join
 import fnmatch
 
-indir = '/Users/hg1/data/MOD11'
+indir = '/Users/hg1/data/MOD13'
 
 for root, dirs, files in walk(indir):
     for name in dirs:

@@ -17,6 +17,7 @@ class GlobalMODIS :
     year = 2000
     month = 1
     nyears = 20
+    stackyears=[]
     scale_factor = 1.
     file_loaded = QtCore.pyqtSignal()
 

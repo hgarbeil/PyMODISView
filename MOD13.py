@@ -27,20 +27,28 @@ class MOD13(GlobalMODIS):
                 print('SCALE_FACTOR   : ', key, ':', val)
                 self.scale_factor = val
         self.data_ndvi = data[self.startl:self.startl+self.nl, self.starts:self.starts+self.ns]
+        sds_obj = file.select('CMG 0.05 Deg Monthly EVI')
+        data = sds_obj.get()
+        attrs = sds_obj.attributes()
+        self.data_evi = data[self.startl:self.startl + self.nl, self.starts:self.starts + self.ns]
         SD.end(file)
-        print ("Number of samples is ", self.ns)
         self.parse_filename()
         self.read_stacked()
 
     def read_stacked (self) :
         ## read in the nighttime stacked file
         sfile = os.path.join(self.pathname,'outarr_ndvi')
+        yfile = os.path.join(self.pathname,'years.txt')
         nbytes = os.path.getsize(sfile)
         self.nyears = int(nbytes / (self.ns * self.nl * 2))
         print("number of years in outarr is ", self.nyears)
         self.stacked_ndvi = np.fromfile (sfile, dtype=np.int16).reshape(self.nyears, self.nl, self.ns)
         sfile = os.path.join(self.pathname, 'outarr_evi')
         self.stacked_evi = np.fromfile(sfile, dtype=np.int16).reshape(self.nyears, self.nl, self.ns)
+        f = open (yfile,'r')
+        allyears = f.readlines()
+        for l in allyears :
+            self.stackyears.append(int(l))
 
     def get_time_series(self, x, y):
         myprof0 = self.stacked_ndvi[:, y, x] / self.scale_factor

@@ -10,6 +10,7 @@ class MOD11(GlobalMODIS):
     # starts = 1080
     # startl = 700
 
+# TODO : Populate years list with list in years.txt in the data directories.
     def __init__(self, fname=None):
         super(MOD11,self).__init__()
 
@@ -45,12 +46,19 @@ class MOD11(GlobalMODIS):
     def read_stacked (self) :
         ## read in the nighttime stacked file
         sfile = os.path.join(self.pathname,'outarr')
+        yfile = os.path.join(self.pathname,'years.txt')
         nbytes = os.path.getsize(sfile)
         self.nyears = int(nbytes / (self.ns * self.nl * 2))
         print("number of years in outarr is ", self.nyears)
         self.stacked_night = np.fromfile (sfile, dtype=np.uint16).reshape(self.nyears, self.nl, self.ns)
         sfile = os.path.join(self.pathname, 'outarr_day')
         self.stacked_day = np.fromfile(sfile, dtype=np.uint16).reshape(self.nyears, self.nl, self.ns)
+        f = open (yfile,'r')
+        allyears = f.readlines()
+        for l in allyears :
+            self.stackyears.append(int(l))
+
+
 
     def get_time_series (self, x, y) :
         myprof0 = self.stacked_night[:,y,x]*self.scale_factor
