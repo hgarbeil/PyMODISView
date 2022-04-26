@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QFileDialog
 from MOD11 import *
 from MOD13 import *
 import sys
+from mystats import *
 
 # TODO : used getyears to generate the years.txt file, use this as part of the stack data to correctly plot years
 #
@@ -67,6 +68,8 @@ class UI (QMainWindow):
         # get the center profile
         if self.dataproduct == 0 :
             outprofile = self.m11.get_time_series(660,350)
+            mystats = summarystats (self.m11.stackyears,np.asarray(outprofile[0]))
+            print (mystats)
         else :
             outprofile = self.m13.get_time_series(660, 350)
 
@@ -105,6 +108,7 @@ class UI (QMainWindow):
 
         # update plot
         #self.ui.plot_widget.set_y(outprofile)
+
 
     def closeup (self):
         sys.exit(0)
