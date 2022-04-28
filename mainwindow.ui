@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -52,6 +52,16 @@
         <y>20</y>
         <width>941</width>
         <height>421</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="timeseriesResTE">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>20</y>
+        <width>351</width>
+        <height>411</height>
        </rect>
       </property>
      </widget>
@@ -356,7 +366,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset>
-     <normaloff>Open.bmp</normaloff>Open.bmp</iconset>
+     <normaloff>../PyMODIS/Open.bmp</normaloff>../PyMODIS/Open.bmp</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -403,7 +413,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../PyMODIS/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

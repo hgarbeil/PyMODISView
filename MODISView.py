@@ -31,6 +31,8 @@ class UI (QMainWindow):
         self.xloc = 660
         self.yloc = 350
         self.ui.image_widget.mouse_clicked.connect(self.newxy)
+        self.lon = 0
+        self.lat = 0
 
 
 
@@ -69,12 +71,18 @@ class UI (QMainWindow):
         if self.dataproduct == 0 :
             outprofile = self.m11.get_time_series(660,350)
             mystats = summarystats (self.m11.stackyears,np.asarray(outprofile[0]))
+            mystats1 = summarystats(self.m11.stackyears, np.asarray(outprofile[1]))
+            (self.lon,self.lat)=self.m11.xy_to_lonlat(660,350)
             print (mystats)
         else :
             outprofile = self.m13.get_time_series(660, 350)
+            mystats = summarystats(self.m13.stackyears, np.asarray(outprofile[0]))
+            mystats1 = summarystats(self.m13.stackyears, np.asarray(outprofile[1]))
+            (self.lon,self.lat)=self.m11.xy_to_lonlat(660,350)
+
 
         self.ui.plot_widget.set_y(outprofile)
-
+        self.displaystats (mystats, mystats1)
 
 
     def newxy (self, x, y):
@@ -99,15 +107,44 @@ class UI (QMainWindow):
             valnight = self.m11.data_night[y,x]*self.m11.scale_factor
             self.ui.plot_widget.set_xy(self.m11.stackyears, outprofile)
             self.ui.plot_widget.add_points(self.m11.year, valnight, valday)
+            mystats = summarystats(self.m11.stackyears, np.asarray(outprofile[0]))
+            mystats1 = summarystats(self.m11.stackyears, np.asarray(outprofile[1]))
         else :
             outprofile = self.m13.get_time_series(x, y)
             valday = self.m13.data_ndvi[y, x] / self.m13.scale_factor
             valnight = self.m13.data_evi[y, x] / self.m13.scale_factor
             self.ui.plot_widget.set_xy(self.m13.stackyears, outprofile)
             self.ui.plot_widget.add_points(self.m13.year, valnight, valday)
+            mystats = summarystats(self.m13.stackyears, np.asarray(outprofile[0]))
+            mystats1 = summarystats(self.m13.stackyears, np.asarray(outprofile[1]))
+
+        self.displaystats(mystats,mystats1)
 
         # update plot
         #self.ui.plot_widget.set_y(outprofile)
+        #sumstatsd = {'npts': npts, 'mean': meanval, 'min': minval, 'max': maxval, 'min_year': minyear,
+        #             'max_year': maxyear}
+
+    def displaystats (self, dict_stats, dict_stats1):
+        TE_temp = self.ui.timeseriesResTE
+        TE_temp.clear()
+        TE_temp.append("Long : {:.2f}\tLat : {:.2f}\n".format(self.lon, self.lat))
+        #strarray =[]
+        str0 = "Number of Years : {}".format(dict_stats['npts'])
+        TE_temp.append(str0)
+        str0 = "Mean Value : {:.1f}".format(dict_stats['mean'])
+        TE_temp.append(str0)
+        str0 = "Min Value  : {:.1f}\tYear of Min : {}".format(dict_stats['min'], dict_stats['min_year'])
+        TE_temp.append(str0)
+        str0 = "Max Value  : {:.1f}\tYear of Max : {}".format(dict_stats['max'], dict_stats['max_year'])
+        TE_temp.append(str0)
+        TE_temp.append ("\nSecond Profile")
+        str0 = "Mean Value : {:.1f}".format(dict_stats1['mean'])
+        TE_temp.append(str0)
+        str0 = "Min Value  : {:.1f}\tYear of Min : {}".format(dict_stats1['min'], dict_stats1['min_year'])
+        TE_temp.append(str0)
+        str0 = "Max Value  : {:.1f}\tYear of Max : {}".format(dict_stats1['max'], dict_stats1['max_year'])
+        TE_temp.append(str0)
 
 
     def closeup (self):
