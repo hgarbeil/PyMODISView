@@ -12,9 +12,10 @@ def summarystats (xarray, array) :
     meanval = np.mean(array)
     minval = np.min (array)
     maxval = np.max(array)
+    medval = np.median (array)
     minyear = xarray[np.argmin(array)]
     maxyear = xarray[np.argmax(array)]
-    sumstatsd = {'npts':npts, 'mean':meanval, 'min':minval, 'max':maxval, 'min_year':minyear, 'max_year':maxyear}
+    sumstatsd = {'npts':npts, 'mean':meanval, 'median':medval, 'min':minval, 'max':maxval, 'min_year':minyear, 'max_year':maxyear}
     #sumstats: list[Union[Union[ndarray, int, float, complex], Any]] = [npts, meanval, minval, maxval, minyear, maxyear]\
     print(sumstatsd['mean'])
     return sumstatsd
