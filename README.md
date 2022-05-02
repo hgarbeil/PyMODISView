@@ -2,6 +2,8 @@
 
 MODIS MOD11 and MOD13 Global MODIS Monthly Global Analysis Software
 
+![GitHub Logo](/imgs/Plot_PyMODISView)
+
 ## Description
 
 This program will allow a user to read in a MOD11 land surface temperature (LST) hdf global monthly file or a MOD13 normalized difference vegetation index (NDVI) hdf global monthly file. The program has been set to extract a region of interest of the continental United States. Both of these datasets are products from the NASA MODIS Land Science Teams. Program is written in Python with the Qt GUI framework provided by the PyQt5 module. 
