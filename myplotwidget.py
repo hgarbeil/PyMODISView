@@ -12,6 +12,10 @@ class myplotwidget (pg.PlotWidget) :
         self.setLabel('top',"ScatterPlot")
         self.pen0 = pg.mkPen('r', width=1.5)
         self.pen1 = pg.mkPen('g', width=1.5)
+        self.pen0_dot = pg.mkPen('r', width=1., style=QtCore.Qt.DotLine)
+        self.pen1_dot = pg.mkPen('g', width=1., style=QtCore.Qt.DotLine)
+        self.xmin = 2000
+        self.xmax = 2025
 
 
 
@@ -35,6 +39,16 @@ class myplotwidget (pg.PlotWidget) :
         self.clear()
         self.plot(xvals, yvals[0], pen=self.pen0)
         self.plot(xvals, yvals[1], pen=self.pen1)
+        self.xmin = np.min(xvals)
+        self.xmax = np.max(xvals)
+
+
+    def add_meanvalues (self, mean0, mean1):
+        xnew = [self.xmin, self.xmax]
+        y0 = [mean0, mean0]
+        y1 = [mean1, mean1]
+        self.plot(xnew, y0, pen=self.pen0_dot)
+        self.plot(xnew, y1, pen=self.pen1_dot)
 
     # self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
     # self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))

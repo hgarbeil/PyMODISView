@@ -119,6 +119,7 @@ class UI (QMainWindow):
             mystats1 = summarystats(self.m13.stackyears, np.asarray(outprofile[1]))
 
         self.displaystats(mystats,mystats1)
+        self.ui.plot_widget.add_meanvalues (mystats['mean'], mystats1['mean'])
 
         # update plot
         #self.ui.plot_widget.set_y(outprofile)
