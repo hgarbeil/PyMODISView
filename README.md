@@ -2,7 +2,7 @@
 
 MODIS MOD11 and MOD13 Global MODIS Monthly Global Analysis Software
 
-![GitHub Logo](/imgs/Plot_PyMODISView)
+![GitHub Logo](/imgs/Plot_PyMODISView.png)
 
 ## Description
 
