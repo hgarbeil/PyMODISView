@@ -9,7 +9,7 @@ class myplotwidget (pg.PlotWidget) :
         pg.PlotWidget.__init__(self, parent)
         self.setLabel('bottom',"YEAR")
         self.setLabel('left', "VALUE")
-        self.setLabel('top',"ScatterPlot")
+        self.setLabel('top',"PyMODISView Time Series Plot")
         self.pen0 = pg.mkPen('r', width=1.5)
         self.pen1 = pg.mkPen('g', width=1.5)
         self.pen0_dot = pg.mkPen('r', width=1., style=QtCore.Qt.DotLine)
@@ -37,6 +37,7 @@ class myplotwidget (pg.PlotWidget) :
 
     def set_xy (self, xvals, yvals) :
         self.clear()
+        self.addLegend()
         self.plot(xvals, yvals[0], pen=self.pen0)
         self.plot(xvals, yvals[1], pen=self.pen1)
         self.xmin = np.min(xvals)
