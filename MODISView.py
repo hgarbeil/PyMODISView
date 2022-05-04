@@ -82,6 +82,7 @@ class UI (QMainWindow):
 
 
         self.ui.plot_widget.set_y(outprofile)
+        self.ui.plot_widget0.set_y(outprofile)
         self.displaystats (mystats, mystats1)
 
 
@@ -106,7 +107,9 @@ class UI (QMainWindow):
             valday = self.m11.data_day[y,x]*self.m11.scale_factor
             valnight = self.m11.data_night[y,x]*self.m11.scale_factor
             self.ui.plot_widget.set_xy(self.m11.stackyears, outprofile)
+            self.ui.plot_widget0.set_xy(self.m11.stackyears, outprofile)
             self.ui.plot_widget.add_points(self.m11.year, valnight, valday)
+            self.ui.plot_widget0.add_points(self.m11.year, valnight, valday)
             mystats = summarystats(self.m11.stackyears, np.asarray(outprofile[0]))
             mystats1 = summarystats(self.m11.stackyears, np.asarray(outprofile[1]))
         else :
@@ -114,7 +117,9 @@ class UI (QMainWindow):
             valday = self.m13.data_ndvi[y, x] / self.m13.scale_factor
             valnight = self.m13.data_evi[y, x] / self.m13.scale_factor
             self.ui.plot_widget.set_xy(self.m13.stackyears, outprofile)
+            self.ui.plot_widget0.set_xy(self.m13.stackyears, outprofile)
             self.ui.plot_widget.add_points(self.m13.year, valnight, valday)
+            self.ui.plot_widget0.add_points(self.m13.year, valnight, valday)
             mystats = summarystats(self.m13.stackyears, np.asarray(outprofile[0]))
             mystats1 = summarystats(self.m13.stackyears, np.asarray(outprofile[1]))
 

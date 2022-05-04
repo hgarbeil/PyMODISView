@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1500</width>
-    <height>880</height>
+    <height>1150</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,13 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>40</y>
       <width>1350</width>
-      <height>760</height>
+      <height>1031</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -40,6 +40,16 @@
        </rect>
       </property>
      </widget>
+     <widget class="myplotwidget" name="plot_widget0" native="true">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>670</y>
+        <width>1320</width>
+        <height>321</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -49,7 +59,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
+        <y>670</y>
         <width>941</width>
         <height>421</height>
        </rect>
@@ -206,9 +216,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
+      <y>0</y>
       <width>191</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="title">
@@ -248,7 +258,7 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>20</y>
+      <y>10</y>
       <width>91</width>
       <height>20</height>
      </rect>
@@ -261,7 +271,7 @@
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>20</y>
+      <y>10</y>
       <width>550</width>
       <height>28</height>
      </rect>
