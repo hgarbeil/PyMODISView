@@ -42,6 +42,8 @@ class UI (QMainWindow):
             self.dataproduct = 0
         else :
             self.dataproduct = 1
+        self.ui.plot_widget.set_plottype(self.dataproduct)
+        self.ui.plot_widget0.set_plottype(self.dataproduct)
 
 
     def file_open (self) :
@@ -78,7 +80,7 @@ class UI (QMainWindow):
             outprofile = self.m13.get_time_series(660, 350)
             mystats = summarystats(self.m13.stackyears, np.asarray(outprofile[0]))
             mystats1 = summarystats(self.m13.stackyears, np.asarray(outprofile[1]))
-            (self.lon,self.lat)=self.m11.xy_to_lonlat(660,350)
+            (self.lon,self.lat)=self.m13.xy_to_lonlat(660,350)
 
 
         self.ui.plot_widget.set_y(outprofile)
@@ -87,6 +89,7 @@ class UI (QMainWindow):
 
 
     def newxy (self, x, y):
+        ## newxy (x,y) takes the pixel location, gets latlon, stacked stats, profiles and directs output to gui
         self.xloc = x
         self.yloc = y
         print ("Main : ",x, y)

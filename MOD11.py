@@ -45,6 +45,7 @@ class MOD11(GlobalMODIS):
 
     def read_stacked (self) :
         ## read in the nighttime stacked file
+        self.stackyears.clear()
         sfile = os.path.join(self.pathname,'outarr')
         yfile = os.path.join(self.pathname,'years.txt')
         nbytes = os.path.getsize(sfile)

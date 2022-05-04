@@ -7,6 +7,8 @@ class myplotwidget (pg.PlotWidget) :
     def __init__(self, parent):
         pg.setConfigOption('background', (90,90,90))
         pg.PlotWidget.__init__(self, parent)
+        legend = self.addLegend()
+        legend.setBrush('k')
         self.setLabel('bottom',"YEAR")
         self.setLabel('left', "VALUE")
         self.setLabel('top',"PyMODISView Time Series Plot")
@@ -16,6 +18,7 @@ class myplotwidget (pg.PlotWidget) :
         self.pen1_dot = pg.mkPen('g', width=1., style=QtCore.Qt.DotLine)
         self.xmin = 2000
         self.xmax = 2025
+        self.plottype = 0 # 0 for LST, 1 for NDVI
 
 
 
@@ -23,6 +26,8 @@ class myplotwidget (pg.PlotWidget) :
         y = np.arange (0,10)*4.
         #self.plot(x, y, pen='y', title='Test Plot')
 
+    def set_plottype (self, thistype) :
+        self.plottype = thistype
 
     def set_y (self, yvals):
         self.clear()
@@ -30,16 +35,25 @@ class myplotwidget (pg.PlotWidget) :
 
         npts = yvals[0].size
         x = np.arange(npts) + 2000
-        self.plot(x,yvals[0],pen=self.pen0)
-        self.plot(x,yvals[1],pen=self.pen1)
+        if (self.plottype==0) :
+            self.plot(x,yvals[0],pen=self.pen0, name="LST_Night")
+            self.plot(x,yvals[1],pen=self.pen1, name="LST_DAY")
+        else  :
+            self.plot(x, yvals[0], pen=self.pen0, name="NDVI")
+            self.plot(x, yvals[1], pen=self.pen1, name="EVI")
+
         #self.plot(x,yvals[0],QtGui.QPen(QtCore.Qt.red))
         #self.plot(x,yvals[1],QtGui.QPen(QtCore.Qt.yellow))
 
     def set_xy (self, xvals, yvals) :
         self.clear()
-        self.addLegend()
-        self.plot(xvals, yvals[0], pen=self.pen0)
-        self.plot(xvals, yvals[1], pen=self.pen1)
+        #self.addLegend()
+        if (self.plottype==0) :
+            self.plot(xvals,yvals[0],pen=self.pen0, name="LST_Night")
+            self.plot(xvals,yvals[1],pen=self.pen1, name="LST_DAY")
+        else  :
+            self.plot(xvals, yvals[0], pen=self.pen0, name="NDVI")
+            self.plot(xvals, yvals[1], pen=self.pen1, name="EVI")
         self.xmin = np.min(xvals)
         self.xmax = np.max(xvals)
 
