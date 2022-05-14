@@ -12,9 +12,13 @@ This program will allow a user to read in a MOD11 land surface temperature (LST)
 
 ### Installation
 
-This program is built with python 3.9 and pyhdf. The easiest method to install is to first download and install anaconda from anaconda.com. The pyhdf and plotting module pyqtgraph can be downloaded after the anaconda install via the terminal with the following commands
+This program is built with python 3.9 and pyhdf. The easiest method to install is to first download and install anaconda from anaconda.com. The pyqt, pyhdf modules and plotting module pyqtgraph can be put into a python virtual environment after the anaconda install via the terminal with the following commands
 
-conda -c conda-forge install pyhdf pyqtgraph
+
+conda create --name qt_hdf4_35 python=3.5 pyhdf pyqt pyqtgraph scipy
+conda activate qt_hdf4_35 
+python3 PyMODISView.py
+
     
  
 ### Data
