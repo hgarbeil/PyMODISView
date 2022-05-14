@@ -44,7 +44,7 @@ class GlobalMODIS :
         return xloc,yloc
 
     def parse_filename (self) :
-        self.pathname = pathlib.Path(self.filename).parent
+        self.pathname = str(pathlib.Path(self.filename).parent)
         pos = self.filename.index ('.A20')
         yearstring = self.filename[pos+2:pos+6]
         self.year = int(yearstring)
