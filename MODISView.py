@@ -13,6 +13,7 @@ from MOD11 import *
 from MOD13 import *
 import sys
 from mystats import *
+from getcities import *
 
 # TODO : used getyears to generate the years.txt file, use this as part of the stack data to correctly plot years
 #
@@ -33,6 +34,9 @@ class UI (QMainWindow):
         self.ui.image_widget.mouse_clicked.connect(self.newxy)
         self.lon = 0
         self.lat = 0
+        gcities = getcities()
+        majorcities= gcities.parse_lonlat()
+        print (majorcities['city'])
 
 
 
