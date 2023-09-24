@@ -32,5 +32,5 @@ The directory containing the MOD11 and MOD13 files can be organized such that th
 Actively being developed. Albeit in the background.
 
 ## Contact
-Anyone wishing the dataset can contact me at hgarbeilAThawaii.edu
+Anyone wishing the dataset can contact me at garbeilAThawaii.edu
 
